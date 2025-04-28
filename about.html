@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ConvertExpert</title>
+    <link rel="icon" type="image/png" href="ConvertXpert.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       
+        .about-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .about-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--converter-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-section h2 {
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            background: var(--input-bg);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .developer-info {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+           
+        }
+       
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .about-content {
+        animation: fadeIn 0.8s ease-out;
+    }
+
+   
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .about-section {
+        opacity: 0;
+        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    }
+
+    .visible {
+        opacity: 1;
+    }
+
+    .slide-left {
+        animation: slideInLeft 0.6s ease-out forwards;
+    }
+
+    .slide-right {
+        animation: slideInRight 0.6s ease-out forwards;
+    }
+
+   
+    .feature-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(76, 175, 80, 0.1),
+            transparent
+        );
+        transition: 0.6s;
+    }
+
+    .feature-card:hover::before {
+        left: 100%;
+    }
+
+    .feature-card h3 {
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover h3 {
+        transform: scale(1.05);
+        color: #4CAF50;
+    }
+
+    /* Pulsing heart animation */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    .pulse-heart {
+        animation: pulse 1.5s infinite;
+        display: inline-block;
+    }
+
+    /* Section hover effect */
+    .about-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Gradient underline for headings */
+    h2 {
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+        border-radius: 2px;
+    }
+    
+    .social-footer {
+        background: var(--converter-bg);
+        padding: 2rem 1rem;
+        text-align: center;
+        margin-top: 3rem;
+        border-top: 1px solid #4CAF5050;
+    }
+
+    .social-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .social-link {
+        color: #4CAF50;
+        font-size: 2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .social-link:hover {
+        color: #45a049;
+        transform: translateY(-3px);
+    }
+
+    .copyright-text {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .copyright-text p {
+        margin: 0.5rem 0;
+    }
+    @media (max-width: 768px) {
+        .about-content {
+            padding: 1.5rem;
+            margin: 1rem auto;
+        }
+
+        .about-section {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 1rem;
+        }
+
+        .nav-links {
+            display: none; /* Hide desktop navigation */
+        }
+
+        .nav-container {
+            padding: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .social-container {
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            font-size: 1.8rem;
+        }
+    }
+
+    /* Mobile screens */
+    @media (max-width: 480px) {
+        .about-content {
+            padding: 1rem;
+        }
+
+        .about-section {
+            padding: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+        }
+
+        .developer-info {
+            padding: 1rem;
+        }
+
+        .social-container {
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            font-size: 1.5rem;
+        }
+
+        .copyright-text {
+            font-size: 0.8rem;
+        }
+
+        /* Mobile navigation */
+        .nav-right {
+            position: relative;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--converter-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .nav-links li {
+            margin: 0.5rem 0;
+        }
+    }
+
+    /* Small mobile screens */
+    @media (max-width: 360px) {
+        .about-section {
+            padding: 0.5rem;
+        }
+
+        h2::after {
+            width: 40px;
+        }
+
+        .social-link {
+            font-size: 1.2rem;
+        }
+
+        .copyright-text {
+            font-size: 0.7rem;
+        }
+    }
+    :root {
+    --converter-bg: rgba(255, 255, 255, 0.95);
+    --input-bg: #ffffff;
+}
+.mobile-menu-btn {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+@media (max-width: 480px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+
+
+    </style>
+    <script>
+        // Add this JavaScript at the bottom of your existing script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll animations
+            const sections = document.querySelectorAll('.about-section');
+            const options = {
+                threshold: 0.2
+            };
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.classList.add(
+                            entry.target.dataset.animation || 'slide-left'
+                        );
+                    }
+                });
+            }, options);
+    
+            sections.forEach((section, index) => {
+                section.dataset.animation = index % 2 === 0 ? 'slide-left' : 'slide-right';
+                observer.observe(section);
+            });
+    
+            // Hover effect for feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+    
+            // Add pulse animation to heart
+            document.querySelector('developer-info p').innerHTML = 
+                document.querySelector('developer-info p').innerHTML.replace('❤️', 
+                '<span class="pulse-heart">❤️</span>');
+        });
+    
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const navLinks = document.querySelector('.nav-links');
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (!navLinks.contains(event.target) && !mobileBtn.contains(event.target)) {
+            navLinks.classList.remove('active');
+        }
+    });
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a class="logo">ConvertExpert</a>
+            <div class="nav-right">
+                <button class="mobile-menu-btn">☰</button>
+                <button id="themeToggle" class="theme-toggle">🌓</button>
+                <ul class="nav-links">
+                    <li><a href="service.html">Service</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="about-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="welcome-text">About ConvertExpert</h1>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>📖 What is ConvertExpert?</h2>
+            <p>ConvertExpert is your ultimate digital conversion solution designed to simplify complex unit conversions across multiple categories. Whether you're a student, professional, or everyday user, our platform provides instant, accurate conversions for various measurement units with just a few clicks.</p>
+        </section>
+
+        <!-- <section class="about-section">
+            <h2>🌟 Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>📐 Comprehensive Tools</h3>
+                    <p>20+ conversion categories including length, temperature, data, energy, and more</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Instant Results</h3>
+                    <p>Real-time conversions with precision calculations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 User-Friendly</h3>
+                    <p>Clean interface with dark/light mode options</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔒 Reliable</h3>
+                    <p>Regularly updated conversion algorithms</p>
+                </div>
+            </div>
+        </section> -->
+
+        <section class="about-section">
+            <h2>🛠️ Key Features</h2>
+            <ul>
+                <li>Multi-category conversion system</li>
+                <li>Interactive number system converter</li>
+                <li>Age calculator with date picker</li>
+                <li>Real-time temperature conversion</li>
+                <li>Comprehensive engineering converters</li>
+                <li>Responsive design for all devices</li>
+                <li>Cross-browser compatibility</li>
+            </ul>
+        </section>
+        <section class="about-section">
+            <h2>🌟 Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>📐 Comprehensive Tools</h3>
+                    <p>20+ conversion categories including length, temperature, data, energy, and more</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Instant Results</h3>
+                    <p>Real-time conversions with precision calculations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 User-Friendly</h3>
+                    <p>Clean interface with dark/light mode options</p>
+                </div>
+                
+                <!-- New Added Features -->
+                <div class="feature-card">
+                    <h3>🌍 Global Reach</h3>
+                    <p>Supports multiple languages and regional measurement systems</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔐 Privacy First</h3>
+                    <p>No data collection or tracking - your conversions stay private</p>
+                </div>
+                <div class="feature-card">
+                  
+                <div class="feature-card">
+                    <h3>🔄 Always Improving</h3>
+                    <p>Regular updates with new features based on user feedback</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="developer-info">
+            <h2>Developer's Note</h2>
+            <p>ConvertExpert was created with ❤️ to solve real-world conversion problems. Our mission is to make unit conversion accessible and effortless for everyone. We continuously work to improve accuracy and add new features based on user feedback.</p>
+            <p>Have suggestions? Visit our <a href="feedback.html">Feedback</a> page!</p>
+        </section>
+    </div>
+    <footer class="social-footer">
+        <div class="social-container">
+            <a href="https://www.linkedin.com/in/priyanshu-kumar-4b349029a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/itx.priyanshu21?igsh=NHhieXk0M2l6bm9s" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://github.com/priyanshu-kumar21" class="social-link" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://x.com/Priyanshu_kr21?s=08" class="social-link" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="copyright-text">
+            <p>ConvertExpert is optimized for unit conversions and calculations. Results might be rounded for better readability. Tools and converters are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content.</p>
+            <p>Copyright 2024 by ConvertExpert. All Rights Reserved. ConvertExpert is Powered by SENTNO.</p>
+        </div>
+    </footer>
+    
+
+    <footer class="disclaimer">
+        <p>ConvertExpert can make mistakes, For idea and reference only</p>
+    </footer>
+
+  
+</body>
+</html>

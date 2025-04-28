@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - ConvertExpert</title>
+    <link rel="icon" type="image/png" href="ConvertXpert.png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a2e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Shapes Animation */
+        .bg-shapes div {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            opacity: 0.1;
+        }
+
+        .bg-shapes div:nth-child(1) {
+            width: 150px;
+            height: 150px;
+            background: #4CAF50;
+            top: 10%;
+            left: 20%;
+            animation-duration: 15s;
+        }
+
+        .bg-shapes div:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            background: #2196F3;
+            top: 70%;
+            left: 80%;
+            animation-duration: 12s;
+        }
+
+        .bg-shapes div:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: #FF5722;
+            top: 40%;
+            left: 50%;
+            animation-duration: 18s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(-50px, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-100px, -50px) rotate(270deg);
+            }
+        }
+
+        .calculator {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+            width: 400px;
+        }
+
+        #display {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 20px;
+            padding: 15px;
+            font-size: 32px;
+            text-align: right;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 18px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #e9ecef;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+
+        .operator {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .equals {
+            background: #2196F3;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .special {
+            background: #FF5722;
+            color: white;
+        }
+
+        .calculator {
+        background: rgba(51, 51, 51, 0.9); /* Dark gray background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(5px);
+        width: 400px;
+    }
+
+    #display {
+        width: 100%;
+        height: 70px;
+        margin-bottom: 15px;
+        padding: 15px;
+        font-size: 28px;
+        text-align: right;
+        background-color: #fff; /* White display background */
+        border: none;
+        border-radius: 5px;
+        color: #333; /* Dark text color */
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+    }
+
+    button {
+        padding: 18px;
+        font-size: 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background-color: #666; /* Dark gray buttons */
+        color: white; /* White text */
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #999; /* Light gray on hover */
+        transform: scale(1.05);
+    }
+
+    .operator {
+        background-color: #ff9500; /* Orange color */
+    }
+
+    .equals {
+        background-color: #007AFF; /* Blue color */
+    }
+
+    .special {
+        background-color: #4a4a4a; /* Dark gray */
+    }
+
+    .calculator {
+        background: rgba(51, 51, 51, 0.9);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(5px);
+        width: 90%; /* Changed from fixed width */
+        max-width: 400px; /* Maximum width */
+        margin: 20px;
+    }
+
+    #display {
+        height: 60px;
+        font-size: 24px;
+        padding: 10px;
+    }
+
+    .buttons {
+        gap: 6px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .calculator {
+            padding: 10px;
+            width: 95%;
+        }
+
+        #display {
+            height: 50px;
+            font-size: 22px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .bg-shapes div {
+            display: none; /* Hide animation on mobile for better performance */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .buttons {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .buttons button:nth-child(1),
+        .buttons button:nth-child(2),
+        .buttons button:nth-child(3),
+        .buttons button:nth-child(4),
+        .buttons button:nth-child(5) {
+            grid-column: span 2; /* Make scientific buttons span 2 columns */
+        }
+
+        .special {
+            font-size: 14px;
+        }
+
+        .equals {
+            grid-column: span 4; /* Make equals button full width */
+        }
+
+        #display {
+            font-size: 20px;
+        }
+
+        button {
+            padding: 8px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        button {
+            font-size: 14px;
+            padding: 6px;
+        }
+
+        #display {
+            font-size: 18px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <!-- Buttons same as before -->
+            <button class="special" onclick="appendToDisplay('sin(')">sin</button>
+            <button class="special" onclick="appendToDisplay('cos(')">cos</button>
+            <button class="special" onclick="appendToDisplay('tan(')">tan</button>
+            <button class="special" onclick="appendToDisplay('log(')">log</button>
+            <button class="special" onclick="appendToDisplay('sqrt(')">√</button>
+            
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+            <button class="special" onclick="clearDisplay()">C</button>
+            
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+            <button class="special" onclick="deleteLastChar()">⌫</button>
+            
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button class="special" onclick="appendToDisplay('Math.PI')">π</button>
+            
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button class="equals" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        // Same JavaScript code as before
+        const display = document.getElementById('display');
+
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function deleteLastChar() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                let expression = display.value
+                    .replace(/sin\(/g, 'Math.sin(')
+                    .replace(/cos\(/g, 'Math.cos(')
+                    .replace(/tan\(/g, 'Math.tan(')
+                    .replace(/log\(/g, 'Math.log10(')
+                    .replace(/sqrt\(/g, 'Math.sqrt(');
+
+                display.value = eval(expression);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>

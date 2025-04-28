@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConvertExpert</title>
+    <link rel="icon" type="image/png" href="ConvertXpert.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+   
+
+<nav>
+    <div class="nav-container">
+        <a class="logo">ConvertExpert</a>
+        <div class="nav-right">
+            <button class="hamburger">☰</button>
+            <button id="themeToggle" class="theme-toggle">🌓</button>
+            <ul class="nav-links">
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    
+    <div id="strip">
+        <div class="item">Number System</div>
+        <div class="item">Temperature</div>
+        <div class="item">Age</div>
+        <div class="item">Length</div>
+        <div class="item">Area</div>
+        <div class="item">Volume</div>
+        <div class="item">Mass</div>
+        <div class="item">Speed</div>
+        <div class="item">Data</div>
+        <div class="item">Time</div>
+        <div class="item">Angle</div>
+        <div class="item">Complement</div>
+        <div class="item">Energy</div>
+        <div class="item">Pressure</div> 
+        <div class="item">Power</div> 
+        <div class="item">Weight</div>
+        <div class="item">Forces</div>
+        <div class="item">Charge</div>
+        <div class="item">Current</div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="welcome-text">Welcome to ConvertExpert</h1>
+            <div class="tagline">
+                <p class="typing-animation">Your Ultimate Unit Conversion Companion !!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="conversion-section" id="conversionSection" style="display: none;">
+        <div class="converter-box">
+            <div class="converter-header">
+                <h2>Number System Converter</h2>
+                <button class="back-btn" onclick="showWelcome()">← Back</button>
+            </div>
+            <div class="converter-body">
+                <div class="input-group">
+                    <input type="text" id="numberInput" placeholder="Enter number">
+                    <select id="fromBase">
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="10" selected>Decimal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                </div>
+                <div class="swap-icon">↓</div>
+                <div class="input-group">
+                    <input type="text" id="resultOutput" readonly>
+                    <select id="toBase">
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="10">Decimal</option>
+                        <option value="16" selected>Hexadecimal</option>
+                    </select>
+                </div>
+                <button class="convert-btn" onclick="convertNumber()">Convert</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="age-section" id="ageSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Age Calculator</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <label>Select Your date of birth:</label>
+                <input type="date" id="birthDate" max="">
+            </div>
+
+            <button class="convert-btn" onclick="calculateAge()">Calculate Age</button>
+            
+            <div class="result-box" id="ageResult">
+                <div class="result-item">
+                    <span class="number" id="years">0</span>
+                    <span class="label">YEARS</span>
+                </div>
+                <div class="result-item">
+                    <span class="number" id="months">0</span>
+                    <span class="label">MONTHS</span>
+                </div>
+                <div class="result-item">
+                    <span class="number" id="days">0</span>
+                    <span class="label">DAYS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="tempSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Temperature Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group temp-group">
+                <input type="text" id="celsius" placeholder="Celsius" oninput="validateNumber(this)">
+                <span class="unit">°C</span>
+            </div>
+            
+            <div class="input-group temp-group">
+                <input type="text" id="fahrenheit" placeholder="Fahrenheit" oninput="validateNumber(this)">
+                <span class="unit">°F</span>
+            </div>
+            
+            <div class="input-group temp-group">
+                <input type="text" id="kelvin" placeholder="Kelvin" oninput="validateNumber(this)">
+                <span class="unit">K</span>
+            </div>
+            <button class="convert-btn" onclick="clearTemperatures()">Clear</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="lengthSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Length Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="inputValue" placeholder="Enter value">
+                <select id="fromUnit">
+                    <option value="mm">Milimeters (mm)</option>
+                    <option value="cm">Centimetres (cm)</option>
+                    <option value="m" selected>Metres (m)</option>
+                    <option value="km">Kilometres (km)</option>
+                    <option value="miles">Miles</option>
+                    <option value="inches">Inches (in)</option>
+                    <option value="feet">Feet (ft)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="resultValue" readonly>
+                <select id="toUnit">
+                    <option value="mm">Milimeters (mm)</option>
+                    <option value="cm">Centimetres (cm)</option>
+                    <option value="m">Metres (m)</option>
+                    <option value="km" selected>Kilometres (km)</option>
+                    <option value="miles">Miles</option>
+                    <option value="inches">Inches (in)</option>
+                    <option value="feet">Feet (ft)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertLength()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="areaSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Area Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="areaInput" placeholder="Enter value">
+                <select id="areaFrom">
+                    <option value="cm2">cm²</option>
+                    <option value="ft2">ft²</option>
+                    <option value="in2">in²</option>
+                    <option value="m2" selected>m²</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="areaResult" readonly>
+                <select id="areaTo">
+                    <option value="cm2">cm²</option>
+                    <option value="ft2">ft²</option>
+                    <option value="in2">in²</option>
+                    <option value="m2" selected>m²</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertArea()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="volumeSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Volume Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="volInput" placeholder="Enter value">
+                <select id="volFrom">
+                    <option value="ukgal">UK Gallons</option>
+                    <option value="usgal">US Gallons</option>
+                    <option value="l" selected>Liters</option>
+                    <option value="ml">Milliliters</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="volResult" readonly>
+                <select id="volTo">
+                    <option value="ukgal">UK Gallons</option>
+                    <option value="usgal">US Gallons</option>
+                    <option value="l" selected>Liters</option>
+                    <option value="ml">Milliliters</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertVolume()">Convert</button>
+        </div>
+    </div>
+</section><!-- Mass Converter Section -->
+<section class="conversion-section" id="massSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Mass Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="massInput" placeholder="Enter value">
+                <select id="massFrom">
+                    <option value="g">Grams (g)</option>
+                    <option value="kg" selected>Kilograms (kg)</option>
+                    <option value="lb">Pounds (lb)</option>
+                    <option value="t">Tons (t)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="massResult" readonly>
+                <select id="massTo">
+                    <option value="g">Grams (g)</option>
+                    <option value="kg">Kilograms (kg)</option>
+                    <option value="lb" selected>Pounds (lb)</option>
+                    <option value="t">Tons (t)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertMass()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="dataSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Data Storage Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="dataInput" placeholder="Enter value">
+                <select id="dataFrom">
+                    <option value="bit">Bits (bit)</option>
+                    <option value="B">Bytes (B)</option>
+                    <option value="KB">Kilobytes (KB)</option>
+                    <option value="MB">Megabytes (MB)</option>
+                    <option value="GB" selected>Gigabytes (GB)</option>
+                    <option value="TB">Terabytes (TB)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="dataResult" readonly>
+                <select id="dataTo">
+                    <option value="bit">Bits (bit)</option>
+                    <option value="B">Bytes (B)</option>
+                    <option value="KB">Kilobytes (KB)</option>
+                    <option value="MB" selected>Megabytes (MB)</option>
+                    <option value="GB">Gigabytes (GB)</option>
+                    <option value="TB">Terabytes (TB)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertData()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="speedSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Speed Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="speedInput" placeholder="Enter value">
+                <select id="speedFrom">
+                    <option value="ms">m/s</option>
+                    <option value="mh">m/h</option>
+                    <option value="kms">km/s</option>
+                    <option value="kmh" selected>km/h</option>
+                    <option value="ins">in/s</option>
+                    <option value="inh">in/h</option>
+                    <option value="fts">ft/s</option>
+                    <option value="fth">ft/h</option>
+                    <option value="mis">mi/s</option>
+                    <option value="mih">mi/h</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="speedResult" readonly>
+                <select id="speedTo">
+                    <option value="ms">m/s</option>
+                    <option value="mh">m/h</option>
+                    <option value="kms">km/s</option>
+                    <option value="kmh" selected>km/h</option>
+                    <option value="ins">in/s</option>
+                    <option value="inh">in/h</option>
+                    <option value="fts">ft/s</option>
+                    <option value="fth">ft/h</option>
+                    <option value="mis">mi/s</option>
+                    <option value="mih">mi/h</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertSpeed()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="timeSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Time Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="timeInput" placeholder="Enter value">
+                <select id="timeFrom">
+                    <option value="ms">Milliseconds (ms)</option>
+                    <option value="s" selected>Seconds (s)</option>
+                    <option value="min">Minutes (min)</option>
+                    <option value="h">Hours (h)</option>
+                    <option value="d">Days (d)</option>
+                    <option value="wk">Weeks (wk)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="timeResult" readonly>
+                <select id="timeTo">
+                    <option value="ms">Milliseconds (ms)</option>
+                    <option value="s">Seconds (s)</option>
+                    <option value="min" selected>Minutes (min)</option>
+                    <option value="h">Hours (h)</option>
+                    <option value="d">Days (d)</option>
+                    <option value="wk">Weeks (wk)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertTime()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="angleSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Angle Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="angleInput" placeholder="Enter value">
+                <select id="angleFrom">
+                    <option value="degree" selected>Degree (°)</option>
+                    <option value="radian">Radian (rad)</option>
+                    <option value="minute">Minute (')</option>
+                    <option value="second">Second (")</option>
+                    <option value="octant">Octant</option>
+                    <option value="quadrant">Quadrant</option>
+                    <option value="circle">Circle</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">↓</div>
+
+            <div class="input-group">
+                <input type="number" id="angleResult" readonly>
+                <select id="angleTo">
+                    <option value="degree">Degree (°)</option>
+                    <option value="radian" selected>Radian (rad)</option>
+                    <option value="minute">Minute (')</option>
+                    <option value="second">Second (")</option>
+                    <option value="octant">Octant</option>
+                    <option value="quadrant">Quadrant</option>
+                    <option value="circle">Circle</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertAngle()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="compSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Binary Complement Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="text" id="binaryInput" placeholder="Enter binary number (e.g., 1010)">
+                <select id="compType">
+                    <option value="1s">1's Complement</option>
+                    <option value="2s">2's Complement</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⮂</div>
+
+            <div class="input-group">
+                <input type="text" id="compResult" readonly>
+                <select id="resultType">
+                    <option value="binary">Binary</option>
+                    <option value="decimal">Decimal</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertComplement()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="energySection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Energy/Work Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="energyInput" placeholder="Enter value">
+                <select id="energyFrom">
+                    <option value="J"selected>Joule (J)</option>
+                    <option value="KJ">Kilojoule (kJ)</option>
+                    <option value="MJ">Megajoule (MJ)</option>
+                    <option value="cal">Calorie (cal)</option>
+                    <option value="eV">Electronvolt (eV)</option>
+                    <option value="BTU" >British Thermal Unit (BTU)</option>
+                    <option value="hph">Horsepower-hour (hp·h)</option>
+                    <option value="kWh">Kilowatt-hour (kWh)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="energyResult" readonly>
+                <select id="energyTo">
+                    <option value="J">Joule (J)</option>
+                    <option value="KJ">Kilojoule (kJ)</option>
+                    <option value="MJ">Megajoule (MJ)</option>
+                    <option value="cal" selected>Calorie (cal)</option>
+                    <option value="eV">Electronvolt (eV)</option>
+                    <option value="BTU">British Thermal Unit (BTU)</option>
+                    <option value="hph">Horsepower-hour (hp·h)</option>
+                    <option value="kWh">Kilowatt-hour (kWh)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertEnergy()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="pressureSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Pressure Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="pressureInput" placeholder="Enter value">
+                <select id="pressureFrom">
+                    <option value="Pa">Pascal (Pa)</option>
+                    <option value="kPa">Kilopascal (kPa)</option>
+                    <option value="psi">PSI (psi)</option>
+                    <option value="ksi">KSI (ksi)</option>
+                    <option value="bar">Bar</option>
+                    <option value="torr">Torr</option>
+                    <option value="atm">ATM</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="pressureResult" readonly>
+                <select id="pressureTo">
+                    <option value="Pa">Pascal (Pa)</option>
+                    <option value="kPa" selected>Kilopascal (kPa)</option>
+                    <option value="psi">PSI (psi)</option>
+                    <option value="ksi">KSI (ksi)</option>
+                    <option value="bar">Bar</option>
+                    <option value="torr">Torr</option>
+                    <option value="atm">ATM</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertPressure()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="powerSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Power Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="powerInput" placeholder="Enter value">
+                <select id="powerFrom">
+                    <option value="W">Watt (W)</option>
+                    <option value="kW">Kilowatt (kW)</option>
+                    <option value="MW">Megawatt (MW)</option>
+                    <option value="hp">Horsepower (hp)</option>
+                    <option value="MBH">MBH</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="powerResult" readonly>
+                <select id="powerTo">
+                    <option value="W">Watt (W)</option>
+                    <option value="kW" selected>Kilowatt (kW)</option>
+                    <option value="MW">Megawatt (MW)</option>
+                    <option value="hp">Horsepower (hp)</option>
+                    <option value="MBH">MBH</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertPower()">Convert</button>
+        </div>
+    </div>
+</section>
+
+
+<section class="conversion-section" id="weightSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Weight Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="weightInput" placeholder="Enter value">
+                <select id="weightFrom">
+                    <option value="mg">Milligram (mg)</option>
+                    <option value="g" selected>Gram (g)</option>
+                    <option value="kg">Kilogram (kg)</option>
+                    <option value="oz">Ounce (oz)</option>
+                    <option value="st">Stone (st)</option>
+                    <option value="ct">Carat (ct)</option>
+                    <option value="dwt">Pennyweight (dwt)</option>
+                    <option value="gr">Grain (gr)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="weightResult" readonly>
+                <select id="weightTo">
+                    <option value="mg">Milligram (mg)</option>
+                    <option value="g" selected>Gram (g)</option>
+                    <option value="kg">Kilogram (kg)</option>
+                    <option value="oz">Ounce (oz)</option>
+                    <option value="st">Stone (st)</option>
+                    <option value="ct">Carat (ct)</option>
+                    <option value="dwt">Pennyweight (dwt)</option>
+                    <option value="gr">Grain (gr)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertWeight()">Convert</button>
+        </div>
+    </div>
+</section>
+
+<section class="conversion-section" id="forcesSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Force Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="forceInput" placeholder="Enter value">
+                <select id="forceFrom">
+                    <option value="N" selected>Newton (N)</option>
+                    <option value="kN">Kilonewton (kN)</option>
+                    <option value="gf">Gram-force (gf)</option>
+                    <option value="kgf">Kilogram-force (kgf)</option>
+                    <option value="dyn">Dyne (dyn)</option>
+                    <option value="p">Pond (p)</option>
+                    <option value="pdl">Poundal (pdl)</option>
+                    <option value="lbf">Pound-force (lbf)</option>
+                    <option value="tf">Ton-force (tf)</option>
+                    <option value="ozf">Ounce-force (ozf)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="forceResult" readonly>
+                <select id="forceTo">
+                    <option value="N">Newton (N)</option>
+                    <option value="kN" selected>Kilonewton (kN)</option>
+                    <option value="gf">Gram-force (gf)</option>
+                    <option value="kgf">Kilogram-force (kgf)</option>
+                    <option value="dyn">Dyne (dyn)</option>
+                    <option value="p">Pond (p)</option>
+                    <option value="pdl">Poundal (pdl)</option>
+                    <option value="lbf">Pound-force (lbf)</option>
+                    <option value="tf">Ton-force (tf)</option>
+                    <option value="ozf">Ounce-force (ozf)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertForces()">Convert</button>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="conversion-section" id="chargeSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Charge Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="chargeInput" placeholder="Enter value">
+                <select id="chargeFrom">
+                    <option value="C" selected>Coulomb (C)</option>
+                    <option value="Ah">Ampere-hour (Ah)</option>
+                    <option value="mAh">Milliampere-hour (mAh)</option>
+                    <option value="F">Faraday (F)</option>
+                    <option value="statC">Statcoulomb (statC)</option>
+                    <option value="e">Elementary Charge (e)</option>
+                    <option value="Fr">Franklin (Fr)</option>
+                    <option value="esu">Electrostatic Unit (esu)</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="chargeResult" readonly>
+                <select id="chargeTo">
+                    <option value="C">Coulomb (C)</option>
+                    <option value="Ah" selected>Ampere-hour (Ah)</option>
+                    <option value="mAh">Milliampere-hour (mAh)</option>
+                    <option value="F">Faraday (F)</option>
+                    <option value="statC">Statcoulomb (statC)</option>
+                    <option value="e">Elementary Charge (e)</option>
+                    <option value="Fr">Franklin (Fr)</option>
+                    <option value="esu">Electrostatic Unit (esu)</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertCharge()">Convert</button>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="conversion-section" id="currentSection" style="display: none;">
+    <div class="converter-box">
+        <div class="converter-header">
+            <h2>Electric Current Converter</h2>
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+        </div>
+        
+        <div class="converter-body">
+            <div class="input-group">
+                <input type="number" id="currentInput" placeholder="Enter value">
+                <select id="currentFrom">
+                    <option value="A" selected>Ampere (A)</option>
+                    <option value="mA">Milliampere (mA)</option>
+                    <option value="µA">Microampere (µA)</option>
+                    <option value="kA">Kiloampere (kA)</option>
+                    <option value="Bi">Biot (Bi)</option>
+                    <option value="abA">Abampere (abA)</option>
+                    <option value="EMU">EMU of Current</option>
+                </select>
+            </div>
+
+            <div class="swap-icon">⇅</div>
+
+            <div class="input-group">
+                <input type="number" id="currentResult" readonly>
+                <select id="currentTo">
+                    <option value="A">Ampere (A)</option>
+                    <option value="mA" selected>Milliampere (mA)</option>
+                    <option value="µA">Microampere (µA)</option>
+                    <option value="kA">Kiloampere (kA)</option>
+                    <option value="Bi">Biot (Bi)</option>
+                    <option value="abA">Abampere (abA)</option>
+                    <option value="EMU">EMU of Current</option>
+                </select>
+            </div>
+
+            <button class="convert-btn" onclick="convertCurrent()">Convert</button>
+        </div>
+    </div>
+</section>
+   
+   <script src="script.js"></script>
+
+    <footer class="disclaimer">
+        <p>ConvertExpert can make mistakes, For idea and reference only</p>
+    </footer>
+</body>
+</html>

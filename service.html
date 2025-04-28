@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConvertExpert-Service</title>
+    <link rel="icon" type="image/png" href="ConvertXpert.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            background: linear-gradient(to right, #0f6af3, #af48d2, #e80c99, #fa0e59, #eb4d12);
+            margin-bottom: 30px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color:#FEFAE0;
+        }
+
+        h2 {
+            color: #202124;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #1a73e8;
+            padding-bottom: 8px;
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .converter-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            border: 1px solid #dadce0;
+        }
+
+        .converter-item:hover {
+            transform: translateY(-2px);
+            background: #e8f0fe;
+        }
+
+        .number-system .converter-item { border-left: 4px solid #4285f4; }
+        .temperature .converter-item { border-left: 4px solid #34a853; }
+        .length .converter-item { border-left: 4px solid #fbbc05; }
+        .area .converter-item { border-left: 4px solid #ea4335; }
+        .volume .converter-item { border-left: 4px solid #673ab7; }
+        .mass .converter-item { border-left: 4px solid #C0C0C0; }
+        .speed .converter-item { border-left: 4px solid #FF0000; }
+        .data .converter-item { border-left: 4px solid #C0CA33; }
+        .time .converter-item { border-left: 4px solid #3D8D7A; }
+        .angle .converter-item { border-left: 4px solid #F93827; }
+        .energy .converter-item { border-left: 4px solid #5D0E41; }
+        .pressure  .converter-item { border-left: 4px solid #C14600; }
+        .power  .converter-item { border-left: 4px solid #173B45; }
+        .weight  .converter-item { border-left: 4px solid #F6AAD0; }
+        .force  .converter-item { border-left: 4px solid #AA60C8; }
+        .charge  .converter-item { border-left: 4px solid #1B4D3E; }
+        .current  .converter-item { border-left: 4px solid #fc9a07; }
+
+        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f0f2f5;
+        padding: 15px;
+    }
+
+    .main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .category {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        background: linear-gradient(to right, #0f6af3, #af48d2, #e80c99, #fa0e59, #eb4d12);
+        margin: 20px 0;
+        padding: 20px;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: #FEFAE0;
+        font-size: 2rem;
+        border-radius: 10px;
+    }
+
+    h2 {
+        color: #202124;
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        border-bottom: 2px solid #1a73e8;
+        padding-bottom: 8px;
+    }
+
+    .converter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 12px;
+    }
+
+    .converter-item {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        transition: transform 0.2s;
+        cursor: pointer;
+        border: 1px solid #dadce0;
+        font-size: 0.9em;
+        word-break: break-word;
+    }
+
+   
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.8rem;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        h2 {
+            font-size: 1.1em;
+        }
+
+        .converter-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .main {
+            padding: 0 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            padding: 12px;
+            margin: 10px 0;
+        }
+
+        h2 {
+            font-size: 1em;
+        }
+
+        .converter-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .converter-item {
+            font-size: 0.85em;
+            padding: 10px;
+        }
+
+        .category {
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        h1 {
+            font-size: 1.3rem;
+        }
+
+        .converter-item {
+            font-size: 0.8em;
+        }
+    }
+</style>
+
+   
+</head>
+<body>
+    <div class="main">
+        <h1>ConvertExpert</h1>
+        
+        <div class="category number-system">
+            <h2>Number System Converter</h2>
+            <div class="converter-grid">
+                <!-- Binary Conversions -->
+                <div class="converter-item">Binary → Decimal</div>
+                <div class="converter-item">Binary → Octal</div>
+                <div class="converter-item">Binary → Hexadecimal</div>
+                
+                <!-- Decimal Conversions -->
+                <div class="converter-item">Decimal → Binary</div>
+                <div class="converter-item">Decimal → Octal</div>
+                <div class="converter-item">Decimal → Hexadecimal</div>
+                
+                <!-- Octal Conversions -->
+                <div class="converter-item">Octal → Binary</div>
+                <div class="converter-item">Octal → Decimal</div>
+                <div class="converter-item">Octal → Hexadecimal</div>
+                
+                <!-- Hexadecimal Conversions -->
+                <div class="converter-item">Hexadecimal → Binary</div>
+                <div class="converter-item">Hexadecimal → Decimal</div>
+                <div class="converter-item">Hexadecimal → Octal</div>
+            </div>
+        </div>
+
+        <div class="category temperature">
+            <h2>Temperature Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Celsius → Fahrenheit</div>
+                <div class="converter-item">Celsius → Kelvin</div>
+                <div class="converter-item">Fahrenheit → Celsius</div>
+                <div class="converter-item">Fahrenheit → Kelvin</div>
+                <div class="converter-item">Kelvin → Celsius</div>
+                <div class="converter-item">Kelvin → Fahrenheit</div>
+            </div>
+        </div>
+
+        <div class="category length">
+            <h2>Length Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Millimeter → Centimeter</div>
+                <div class="converter-item">Millimeter → Meter</div>
+                <div class="converter-item">Millimeter → Kilometer</div>
+                <div class="converter-item">Millimeter → Mile</div>
+                <div class="converter-item">Millimeter → Inch</div>
+                <div class="converter-item">Millimeter → Foot</div>
+                
+                <div class="converter-item">Centimeter → Meter</div>
+                <div class="converter-item">Centimeter → Kilometer</div>
+                <div class="converter-item">Centimeter → Mile</div>
+                <div class="converter-item">Centimeter → Inch</div>
+                <div class="converter-item">Centimeter → Foot</div>
+                
+                <div class="converter-item">Meter → Kilometer</div>
+                <div class="converter-item">Meter → Mile</div>
+                <div class="converter-item">Meter → Inch</div>
+                <div class="converter-item">Meter → Foot</div>
+                
+                <div class="converter-item">Kilometer → Mile</div>
+                <div class="converter-item">Kilometer → Inch</div>
+                <div class="converter-item">Kilometer → Foot</div>
+                
+                <div class="converter-item">Mile → Inch</div>
+                <div class="converter-item">Mile → Foot</div>
+                
+                <div class="converter-item">Inch → Foot</div>
+            </div>
+        </div>
+
+        <div class="category area">
+            <h2>Area Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Square Meter → Square CM</div>
+                <div class="converter-item">Square Meter → Square Inch</div>
+                <div class="converter-item">Square Meter → Square Foot</div>
+                <div class="converter-item">Square Centimeter → Square Inch</div>
+                <div class="converter-item">Square Centimeter → Square Foot</div>
+                <div class="converter-item">Square Inch → Square Foot</div>
+               
+                
+            </div>
+        </div>
+
+        <div class="category volume">
+            <h2>Volume Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">UK Gallon → US Gallon</div>
+                <div class="converter-item">UK Gallon → Milliliter</div>
+                <div class="converter-item">UK Gallon → Liter</div>
+                <div class="converter-item">US Gallon → Milliliter</div>
+                <div class="converter-item">US Gallon → Liter</div>
+                <div class="converter-item">Milliliter → Liter</div>
+                
+            </div>
+        </div>
+        <div class="category mass">
+            <h2>Mass Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Kilogram → Gram</div>
+                <div class="converter-item">Kilogram → Pound</div>
+                <div class="converter-item">Kilogram → Ton</div>
+                <div class="converter-item">Gram → Pound</div>
+                <div class="converter-item">Gram → Ton</div>
+                <div class="converter-item">Pound → Ton</div>
+                
+            </div>
+        </div>
+        <div class="category speed">
+            <h2>Speed Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">m/s → m/h</div>
+                <div class="converter-item">m/s → km/s</div>
+                <div class="converter-item">m/s → km/h</div>
+                <div class="converter-item">m/s → in/s</div>
+                <div class="converter-item">m/s → in/h</div>
+                <div class="converter-item">m/s → ft/s</div>
+                <div class="converter-item">m/s → ft/h</div>
+                <div class="converter-item">m/s → mi/s</div>
+                <div class="converter-item">m/s → mi/h</div>
+                <div class="converter-item">m/h → km/s</div>
+                <div class="converter-item">m/h → km/h</div>
+                <div class="converter-item">m/h → in/s</div>
+                <div class="converter-item">m/h → in/h</div>
+                <div class="converter-item">m/h → ft/s</div>
+                <div class="converter-item">m/h → ft/h</div>
+                <div class="converter-item">m/h → mi/s</div>
+                <div class="converter-item">m/h → mi/h</div>
+                <div class="converter-item">km/s → km/h</div>
+                <div class="converter-item">km/s → in/s</div>
+                <div class="converter-item">km/s → in/h</div>
+                <div class="converter-item">km/s → ft/s</div>
+                <div class="converter-item">km/s → ft/h</div>
+                <div class="converter-item">km/s → mi/s</div>
+                <div class="converter-item">km/s → mi/h</div>
+                <div class="converter-item">km/h → in/s</div>
+                <div class="converter-item">km/h → in/h</div>
+                <div class="converter-item">km/h → ft/s</div>
+                <div class="converter-item">km/h → ft/h</div>
+                <div class="converter-item">km/h → mi/s</div>
+                <div class="converter-item">km/h → mi/h</div>
+                <div class="converter-item">in/s → in/h</div>
+                <div class="converter-item">in/s → ft/s</div>
+                <div class="converter-item">in/s → ft/h</div>
+                <div class="converter-item">in/s → mi/s</div>
+                <div class="converter-item">in/s → mi/h</div>
+                <div class="converter-item">in/h → ft/s</div>
+                <div class="converter-item">in/h → ft/h</div>
+                <div class="converter-item">in/h → mi/s</div>
+                <div class="converter-item">in/h → mi/h</div>
+                <div class="converter-item">ft/s → ft/h</div>
+                <div class="converter-item">ft/s → mi/s</div>
+                <div class="converter-item">ft/s → mi/h</div>
+                <div class="converter-item">ft/h → mi/s</div>
+                <div class="converter-item">ft/h → mi/h</div>
+                <div class="converter-item">mi/s → mi/h</div>
+                 
+            </div>
+        </div>
+
+        <div class="category data">
+            <h2>Data Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Bits → Bytes</div>
+                <div class="converter-item">Bits → Kilobytes</div>
+                <div class="converter-item">Bits → Megabytes</div>
+                <div class="converter-item">Bits → Gigabytes</div>
+                <div class="converter-item">Bits → Terabytes</div>
+                <div class="converter-item">Bytes → Kilobytes</div>
+                <div class="converter-item">Bytes → Megabytes</div>
+                <div class="converter-item">Bytes → Gigabytes</div>
+                <div class="converter-item">Bytes → Terabytes</div>
+                <div class="converter-item">Kilobytes → Megabytes</div>
+                <div class="converter-item">Kilobytes → Gigabytes</div>
+                <div class="converter-item">Kilobytes → Terabytes</div>
+                <div class="converter-item">Megabytes → Gigabytes</div>
+                <div class="converter-item">Megabytes → Terabytes</div>
+                <div class="converter-item">Gigabytes → Terabytes</div>
+                
+            </div>
+        </div>
+        <div class="category time">
+            <h2>Time Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Milliseconds → Seconds</div>
+                <div class="converter-item">Milliseconds → Minutes</div>
+                <div class="converter-item">Milliseconds → Hours</div>
+                <div class="converter-item">Milliseconds → Days</div>
+                <div class="converter-item">Milliseconds → Weeks</div>
+                <div class="converter-item">Seconds → Minutes</div>
+                <div class="converter-item">Seconds → Hours</div>
+                <div class="converter-item">Seconds → Days</div>
+                <div class="converter-item">Seconds → Weeks</div>
+                <div class="converter-item">Minutes → Hours</div>
+                <div class="converter-item">Minutes → Days</div>
+                <div class="converter-item">Minutes → Weeks</div>
+                <div class="converter-item">Hours → Days</div>
+                <div class="converter-item">Hours → Weeks</div>
+                <div class="converter-item">Days → Weeks</div>
+            </div>
+        </div>
+        <div class="category angle">
+            <h2>Angle Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Degree → Radian</div>
+                <div class="converter-item">Degree → Minute</div>
+                <div class="converter-item">Degree → Second</div>
+                <div class="converter-item">Degree → Octant</div>
+                <div class="converter-item">Degree → Quadrant</div>
+                <div class="converter-item">Degree → Circle</div>
+                <div class="converter-item">Radian → Minute</div>
+                <div class="converter-item">Radian → Second</div>
+                <div class="converter-item">Radian → Octant</div>
+                <div class="converter-item">Radian → Quadrant</div>
+                <div class="converter-item">Radian → Circle</div>
+                <div class="converter-item">Minute → Second</div>
+                <div class="converter-item">Minute → Octant</div>
+                <div class="converter-item">Minute → Quadrant</div>
+                <div class="converter-item">Minute → Circle</div>
+                <div class="converter-item">Second → Octant</div>
+                <div class="converter-item">Second → Quadrant</div>
+                <div class="converter-item">Second → Circle</div>
+                <div class="converter-item">Octant → Quadrant</div>
+                <div class="converter-item">Octant → Circle</div>
+                <div class="converter-item">Quadrant → Circle</div>
+            </div>
+        </div>
+        <div class="category energy">
+            <h2>Energy Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Joule → Kilojoule</div>
+                <div class="converter-item">Joule → Megajoule</div>
+                <div class="converter-item">Joule → Calorie</div>
+                <div class="converter-item">Joule → Electronvolt</div>
+                <div class="converter-item">Joule → British Thermal Unit</div>
+                <div class="converter-item">Joule → Horsepower-hour</div>
+                <div class="converter-item">Joule → Kilowatt-hour</div>
+                <div class="converter-item">Kilojoule → Megajoule</div>
+                <div class="converter-item">Kilojoule → Calorie</div>
+                <div class="converter-item">Kilojoule → Electronvolt</div>
+                <div class="converter-item">Kilojoule → British Thermal Unit</div>
+                <div class="converter-item">Kilojoule → Horsepower-hour</div>
+                <div class="converter-item">Kilojoule → Kilowatt-hour</div>
+                <div class="converter-item">Megajoule → Calorie</div>
+                <div class="converter-item">Megajoule → Electronvolt</div>
+                <div class="converter-item">Megajoule → British Thermal Unit</div>
+                <div class="converter-item">Megajoule → Horsepower-hour</div>
+                <div class="converter-item">Megajoule → Kilowatt-hour</div>
+                <div class="converter-item">Calorie → Electronvolt</div>
+                <div class="converter-item">Calorie → British Thermal Unit</div>
+                <div class="converter-item">Calorie → Horsepower-hour</div>
+                <div class="converter-item">Calorie → Kilowatt-hour</div>
+                <div class="converter-item">Electronvolt → British Thermal Unit</div>
+                <div class="converter-item">Electronvolt → Horsepower-hour</div>
+                <div class="converter-item">Electronvolt → Kilowatt-hour</div>
+                <div class="converter-item">British Thermal Unit → Horsepower-hour</div>
+                <div class="converter-item">British Thermal Unit → Kilowatt-hour</div>
+                <div class="converter-item">Horsepower-hour → Kilowatt-hour</div>
+                
+            </div>
+        </div>
+        <div class="category pressure">
+            <h2>Pressure Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Pascal → Kilopascal</div>
+                <div class="converter-item">Pascal → PSI</div>
+                <div class="converter-item">Pascal → KSI</div>
+                <div class="converter-item">Pascal → Bar</div>
+                <div class="converter-item">Pascal → Torr</div>
+                <div class="converter-item">Pascal → ATM</div>
+                <div class="converter-item">Kilopascal → PSI</div>
+                <div class="converter-item">Kilopascal → KSI</div>
+                <div class="converter-item">Kilopascal → Bar</div>
+                <div class="converter-item">Kilopascal → Torr</div>
+                <div class="converter-item">Kilopascal → ATM</div>
+                <div class="converter-item">PSI → KSI</div>
+                <div class="converter-item">PSI → Bar</div>
+                <div class="converter-item">PSI → Torr</div>
+                <div class="converter-item">PSI → ATM</div>
+                <div class="converter-item">KSI → Bar</div>
+                <div class="converter-item">KSI → Torr</div>
+                <div class="converter-item">KSI → ATM</div>
+                <div class="converter-item">Bar → Torr</div>
+                <div class="converter-item">Bar → ATM</div>
+                <div class="converter-item">Torr → ATM</div>
+                
+            </div>
+        </div>
+        <div class="category power ">
+            <h2>Power Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Watt → Kilowatt</div>
+                <div class="converter-item">Watt → Megawatt</div>
+                <div class="converter-item">Watt → Horsepower</div>
+                <div class="converter-item">Watt → MBH</div>
+                <div class="converter-item">Kilowatt → Megawatt</div>
+                <div class="converter-item">Kilowatt → Horsepower</div>
+                <div class="converter-item">Kilowatt → MBH</div>
+                <div class="converter-item">Megawatt → Horsepower</div>
+                <div class="converter-item">Megawatt → MBH</div>
+                <div class="converter-item">Horsepower → MBH</div>
+            </div>
+        </div>
+        <div class="category weight ">
+            <h2>Weight Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Milligram → Gram</div>
+                <div class="converter-item">Milligram → Kilogram</div>
+                <div class="converter-item">Milligram → Ounce</div>
+                <div class="converter-item">Milligram → Stone</div>
+                <div class="converter-item">Milligram → Carat</div>
+                <div class="converter-item">Milligram → Pennyweight</div>
+                <div class="converter-item">Milligram → Grain</div>
+                <div class="converter-item">Gram → Kilogram</div>
+                <div class="converter-item">Gram → Ounce</div>
+                <div class="converter-item">Gram → Stone</div>
+                <div class="converter-item">Gram → Carat</div>
+                <div class="converter-item">Gram → Pennyweight</div>
+                <div class="converter-item">Gram → Grain</div>
+                <div class="converter-item">Kilogram → Ounce</div>
+                <div class="converter-item">Kilogram → Stone</div>
+                <div class="converter-item">Kilogram → Carat</div>
+                <div class="converter-item">Kilogram → Pennyweight</div>
+                <div class="converter-item">Kilogram → Grain</div>
+                <div class="converter-item">Ounce → Stone</div>
+                <div class="converter-item">Ounce → Carat</div>
+                <div class="converter-item">Ounce → Pennyweight</div>
+                <div class="converter-item">Ounce → Grain</div>
+                <div class="converter-item">Stone → Carat</div>
+                <div class="converter-item">Stone → Pennyweight</div>
+                <div class="converter-item">Stone → Grain</div>
+                <div class="converter-item">Carat → Pennyweight</div>
+                <div class="converter-item">Carat → Grain</div>
+                <div class="converter-item">Pennyweight → Grain</div>
+                
+            </div>
+        </div>
+
+        <div class="category force ">
+            <h2>Force Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Newton → Kilonewton</div>
+                <div class="converter-item">Newton → Gram-force</div>
+                <div class="converter-item">Newton → Kilogram-force</div>
+                <div class="converter-item">Newton → Dyne</div>
+                <div class="converter-item">Newton → Pond</div>
+                <div class="converter-item">Newton → Poundal</div>
+                <div class="converter-item">Newton → Pound-force</div>
+                <div class="converter-item">Newton → Ton-force</div>
+                <div class="converter-item">Newton → Ounce-force</div>
+                <div class="converter-item">Kilonewton → Gram-force</div>
+                <div class="converter-item">Kilonewton → Kilogram-force</div>
+                <div class="converter-item">Kilonewton → Dyne</div>
+                <div class="converter-item">Kilonewton → Pond</div>
+                <div class="converter-item">Kilonewton → Poundal</div>
+                <div class="converter-item">Kilonewton → Pound-force</div>
+                <div class="converter-item">Kilonewton → Ton-force</div>
+                <div class="converter-item">Kilonewton → Ounce-force</div>
+                <div class="converter-item">Gram-force → Kilogram-force</div>
+                <div class="converter-item">Gram-force → Dyne</div>
+                <div class="converter-item">Gram-force → Pond</div>
+                <div class="converter-item">Gram-force → Poundal</div>
+                <div class="converter-item">Gram-force → Pound-force</div>
+                <div class="converter-item">Gram-force → Ton-force</div>
+                <div class="converter-item">Gram-force → Ounce-force</div>
+                <div class="converter-item">Kilogram-force → Dyne</div>
+                <div class="converter-item">Kilogram-force → Pond</div>
+                <div class="converter-item">Kilogram-force → Poundal</div>
+                <div class="converter-item">Kilogram-force → Pound-force</div>
+                <div class="converter-item">Kilogram-force → Ton-force</div>
+                <div class="converter-item">Kilogram-force → Ounce-force</div>
+                <div class="converter-item">Dyne → Pond</div>
+                <div class="converter-item">Dyne → Poundal</div>
+                <div class="converter-item">Dyne → Pound-force</div>
+                <div class="converter-item">Dyne → Ton-force</div>
+                <div class="converter-item">Dyne → Ounce-force</div>
+                <div class="converter-item">Pond → Poundal</div>
+                <div class="converter-item">Pond → Pound-force</div>
+                <div class="converter-item">Pond → Ton-force</div>
+                <div class="converter-item">Pond → Ounce-force</div>
+                <div class="converter-item">Poundal → Pound-force</div>
+                <div class="converter-item">Poundal → Ton-force</div>
+                <div class="converter-item">Poundal → Ounce-force</div>
+                <div class="converter-item">Pound-force → Ton-force</div>
+                <div class="converter-item">Pound-force → Ounce-force</div>
+                <div class="converter-item">Ton-force → Ounce-force</div>
+                
+            </div>
+        </div>
+        <div class="category charge ">
+            <h2>Charge Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Coulomb → Ampere-hour</div>
+                <div class="converter-item">Coulomb → Milliampere-hour</div>
+                <div class="converter-item">Coulomb → Faraday</div>
+                <div class="converter-item">Coulomb → Statcoulomb</div>
+                <div class="converter-item">Coulomb → Elementary Charge</div>
+                <div class="converter-item">Coulomb → Franklin</div>
+                <div class="converter-item">Coulomb → Electrostatic Unit</div>
+                <div class="converter-item">Ampere-hour → Milliampere-hour</div>
+                <div class="converter-item">Ampere-hour → Faraday</div>
+                <div class="converter-item">Ampere-hour → Statcoulomb</div>
+                <div class="converter-item">Ampere-hour → Elementary Charge</div>
+                <div class="converter-item">Ampere-hour → Franklin</div>
+                <div class="converter-item">Ampere-hour → Electrostatic Unit</div>
+                <div class="converter-item">Milliampere-hour → Faraday</div>
+                <div class="converter-item">Milliampere-hour → Statcoulomb</div>
+                <div class="converter-item">Milliampere-hour → Elementary Charge</div>
+                <div class="converter-item">Milliampere-hour → Franklin</div>
+                <div class="converter-item">Milliampere-hour → Electrostatic Unit</div>
+                <div class="converter-item">Faraday → Statcoulomb</div>
+                <div class="converter-item">Faraday → Elementary Charge</div>
+                <div class="converter-item">Faraday → Franklin</div>
+                <div class="converter-item">Faraday → Electrostatic Unit</div>
+                <div class="converter-item">Statcoulomb → Elementary Charge</div>
+                <div class="converter-item">Statcoulomb → Franklin</div>
+                <div class="converter-item">Statcoulomb → Electrostatic Unit</div>
+                <div class="converter-item">Elementary Charge → Franklin</div>
+                <div class="converter-item">Elementary Charge → Electrostatic Unit</div>
+                <div class="converter-item">Franklin → Electrostatic Unit</div>
+                
+            </div>
+        </div>
+
+        <div class="category current ">
+            <h2>Current Converter</h2>
+            <div class="converter-grid">
+                <div class="converter-item">Ampere → Milliampere</div>
+                <div class="converter-item">Ampere → Microampere</div>
+                <div class="converter-item">Ampere → Kiloampere</div>
+                <div class="converter-item">Ampere → Biot</div>
+                <div class="converter-item">Ampere → Abampere</div>
+                <div class="converter-item">Ampere → EMU of Current</div>
+                <div class="converter-item">Milliampere → Microampere</div>
+                <div class="converter-item">Milliampere → Kiloampere</div>
+                <div class="converter-item">Milliampere → Biot</div>
+                <div class="converter-item">Milliampere → Abampere</div>
+                <div class="converter-item">Milliampere → EMU of Current</div>
+                <div class="converter-item">Microampere → Kiloampere</div>
+                <div class="converter-item">Microampere → Biot</div>
+                <div class="converter-item">Microampere → Abampere</div>
+                <div class="converter-item">Microampere → EMU of Current</div>
+                <div class="converter-item">Kiloampere → Biot</div>
+                <div class="converter-item">Kiloampere → Abampere</div>
+                <div class="converter-item">Kiloampere → EMU of Current</div>
+                <div class="converter-item">Biot → Abampere</div>
+                <div class="converter-item">Biot → EMU of Current</div>
+                <div class="converter-item">Abampere → EMU of Current</div>
+                
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
